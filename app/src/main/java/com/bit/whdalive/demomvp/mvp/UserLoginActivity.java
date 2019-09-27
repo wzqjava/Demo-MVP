@@ -1,7 +1,7 @@
 package com.bit.whdalive.demomvp.mvp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,27 +9,29 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bit.whdalive.demomvp.R;
-import com.bit.whdalive.demomvp.mvp.IUserLoginPresenter;
-import com.bit.whdalive.demomvp.mvp.IUserLoginView;
-import com.bit.whdalive.demomvp.mvp.UserLoginPresenterImpl;
+import com.bit.whdalive.demomvp.mvp_contracts.LoginContract;
+/**
+ *  https://github.com/android/architecture-samples
+ *  参考google sample 编写的mvp
+ *  王志强
+ *  2019-09-27
+ */
 
-public class UserLoginActivity extends AppCompatActivity implements IUserLoginView {
+public class UserLoginActivity extends AppCompatActivity implements LoginContract.IView {
 
     private EditText mEdtUsername,mEdtPwd;
     private Button mBtnLogin,mBtnClear;
     private ProgressBar mPbLoading;
 
-    private IUserLoginPresenter mIUserLoginPresenter;
+    private LoginContract.IPresenter mIUserLoginPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initViews();
     }
     private void initViews(){
-        mIUserLoginPresenter = new UserLoginPresenterImpl(this);
-
+        mIUserLoginPresenter = new UserLoginIPresenterImpl(this);
         mEdtUsername = findViewById(R.id.input_account);
         mEdtPwd = findViewById(R.id.input_password);
 

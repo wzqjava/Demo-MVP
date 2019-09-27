@@ -1,32 +1,43 @@
 package com.bit.whdalive.demomvp.mvp_contracts;
 
-import com.bit.whdalive.demomvp.bean.User;
 
 public interface LoginContract {
 
-    public interface View {
+  interface IView {
+    String getUserName();
 
-        String getUserName();
+    String getPassword();
 
-        String getPassword();
+    void clearUserName();
 
-        void clearUserName();
+    void clearPassword();
 
-        void clearPassword();
+    void showLoading();
 
-        void showLoading();
+    void hideLoading();
 
-        void hideLoading();
+    void toMainActivity();
 
-        void toMainActivity();
+    void showFailedError();
 
-        void showFailedError();
-    }
+  }
 
-    public interface Presenter {
+  interface IPresenter {
 
-        void login();
+    void doLogin();
 
-        void clear();
-    }
+    void clear();
+  }
+
+  interface IUserModel {
+
+    void login(String username, String password, OnLoginListener listener);
+
+  }
+
+  interface OnLoginListener {
+    void loginSuccess();
+
+    void loginFailed();
+  }
 }
